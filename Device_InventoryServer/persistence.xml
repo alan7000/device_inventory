@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistenceUnit>
+    <dataBase>deviceInventory</dataBase>
+    <driver>mysql</driver>
+    <host>localhost</host>
+    <passsword>5332071915</passsword>
+    <user>deviceInventory</user>
+</persistenceUnit>
