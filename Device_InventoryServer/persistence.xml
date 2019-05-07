@@ -3,6 +3,6 @@
     <dataBase>deviceInventory</dataBase>
     <driver>mysql</driver>
     <host>localhost</host>
-    <passsword>5332071915</passsword>
+    <passsword>callisto</passsword>
     <user>deviceInventory</user>
 </persistenceUnit>
