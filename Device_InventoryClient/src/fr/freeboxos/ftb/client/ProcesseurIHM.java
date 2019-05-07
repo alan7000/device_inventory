@@ -118,10 +118,20 @@ public class ProcesseurIHM extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Bouton pour quitter l'IHM
+     *
+     * @param evt
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Mise a jour d'un processeur
+     *
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (this.jTable1.getSelectedRow() == -1) {
@@ -155,24 +165,34 @@ public class ProcesseurIHM extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Ajout d'un processeur
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         AddProcesseurDlg addProcesseurDlg;
         addProcesseurDlg = new AddProcesseurDlg(frame, true);
-        Processeur processeur = addProcesseurDlg.getProcesseur();
         addProcesseurDlg.setVisible(true);
 
+        Processeur processeur = addProcesseurDlg.getProcesseur();
         if (processeur != null) {
             try {
                 this.processeurService.add(processeur);
                 this.model.update(this.processeurService.sort());
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Erreur pendant l'ajout du processeur", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Suppression d'un processeur
+     *
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             if (this.jTable1.getSelectedRow() == -1) {
@@ -183,6 +203,7 @@ public class ProcesseurIHM extends javax.swing.JDialog {
 
             try {
                 this.processeurService.remove(processeur);
+                this.model.update(this.processeurService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erreur pendant la suppression du processeur", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
