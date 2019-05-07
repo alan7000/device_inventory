@@ -8,6 +8,7 @@ package fr.freeboxos.ftb.client.dlg;
 import fr.freeboxos.ftb.metier.entitys.Processeur;
 import fr.freeboxos.ftb.metier.enums.cpuMarque;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -132,9 +133,9 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
 
         jTextFieldTurbo.setText("?");
 
-        jTextFieldCore.setText("?");
+        jTextFieldCore.setText("0");
 
-        jTextFieldThread.setText("?");
+        jTextFieldThread.setText("0");
 
         jTextFieldPlateforme.setText("?");
 
@@ -151,6 +152,11 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
         jButton1.setText("Annuler");
 
         jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Prix");
 
@@ -301,6 +307,91 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Action du bouton ok
+     *
+     * @param evt
+     */
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            String marqueProcesseur = this.jComboBox1.getSelectedItem().toString();
+            String modele = this.jTextFieldModele.getText();
+            String socket = this.jTextFieldSocket.getText();
+            String frequence = this.jTextFieldFrequence.getText();
+            String turbo = this.jTextFieldTurbo.getText();
+            String core = this.jTextFieldCore.getText();
+            String thread = this.jTextFieldThread.getText();
+            String plateforme = this.jTextFieldPlateforme.getText();
+            String gravure = this.jTextFieldGravure.getText();
+            String tdp = this.jTextFieldTPD.getText();
+            String l1 = this.jTextFieldL1.getText();
+            String l2 = this.jTextFieldL2.getText();
+            String l3 = this.jTextFieldL3.getText();
+            String prix = this.jTextFieldPrix.getText();
+
+            if (modele.length() == 0) {
+                throw new Exception("Veuillez mettre un modele ou un \"?\" ");
+            }
+
+            if (socket.length() == 0) {
+                throw new Exception("Veuillez mettre un socket ou un \"?\" ");
+            }
+            if (frequence.length() == 0) {
+                throw new Exception("Veuillez mettre une fréquence ou un \"?\" ");
+            }
+
+            if (turbo.length() == 0) {
+                throw new Exception("Veuillez mettre une fréquence turbo ou un \"?\" ");
+            }
+
+            if (core.length() == 0) {
+                throw new Exception("Veuillez mettre le nombre de core ou un \"?\" ");
+            }
+
+            if (thread.length() == 0) {
+                throw new Exception("Veuillez mettre le nombre de threads ou un \"?\" ");
+            }
+
+            if (plateforme.length() == 0) {
+                throw new Exception("Veuillez mettre le nom de la plateforme ou un \"?\" ");
+            }
+
+            if (gravure.length() == 0) {
+                throw new Exception("Veuillez mettre la finnesse de gravure ou un \"?\" ");
+            }
+
+            if (tdp.length() == 0) {
+                throw new Exception("Veuillez mettre un TDP ou un \"?\" ");
+            }
+
+            if (l1.length() == 0) {
+                throw new Exception("Veuillez mettre le cache L1 ou un \"?\" ");
+            }
+
+            if (l2.length() == 0) {
+                throw new Exception("Veuillez mettre le cache L2 ou un \"?\" ");
+            }
+
+            if (l3.length() == 0) {
+                throw new Exception("Veuillez mettre le cache L3 ou un \"?\" ");
+            }
+
+            if (prix.length() == 0) {
+                throw new Exception("Veuillez mettre le prix ou un \"?\" ");
+            }
+
+            int Core = Integer.parseInt(core);
+            int Thread = Integer.parseInt(thread);
+
+            processeur = new Processeur(marqueProcesseur, modele, socket, frequence, turbo, Core, Thread, plateforme, gravure, tdp, l1, l2, l3, prix);
+            this.processeur.setId(id);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
