@@ -20,6 +20,7 @@ public class MainServer {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
+
         /*
         Démarrage du serveur restful
          */
