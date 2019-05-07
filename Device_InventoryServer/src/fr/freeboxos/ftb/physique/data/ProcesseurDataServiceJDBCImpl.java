@@ -71,8 +71,7 @@ public class ProcesseurDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Proces
 
     @Override
     public Processeur add(Processeur t) throws Exception {
-        String query = "INSERT INTO " + super.getEntityName() + " (id, marque, modele, socket, frequence, turbo, core, thread, plateforme_nom, finesse_gravure, TDP, L1, L2, L3, prix) VALUES ('"
-                + t.getId() + "','"
+        String query = "INSERT INTO " + super.getEntityName() + " (marque, modele, socket, frequence, turbo, core, thread, plateforme_nom, finesse_gravure, TDP, L1, L2, L3, prix) VALUES ('"
                 + t.getMarque() + "','"
                 + t.getModele() + "','"
                 + t.getSocket() + "','"
