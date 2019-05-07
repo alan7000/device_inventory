@@ -40,4 +40,10 @@ public class MetierFactory {
     public static ProcesseurService getProcesseurService() {
         return processeurService;
     }
+
+    private static final AdministrateurService administrateurService = new AdministrateurServiceImpl();
+
+    public static AdministrateurService getAdministrateurService() {
+        return administrateurService;
+    }
 }

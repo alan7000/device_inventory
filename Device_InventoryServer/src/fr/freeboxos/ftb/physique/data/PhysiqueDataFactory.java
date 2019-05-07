@@ -41,4 +41,10 @@ public class PhysiqueDataFactory {
         return processeurDataService;
     }
 
+    private static final AdministrateurDataService adminstateurDataService = new AdministrateurDataServiceJDBCImpl();
+
+    public static AdministrateurDataService getAdministrateurDataService() {
+        return adminstateurDataService;
+    }
+
 }
