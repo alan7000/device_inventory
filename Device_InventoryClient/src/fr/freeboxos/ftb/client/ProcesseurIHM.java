@@ -205,9 +205,10 @@ public class ProcesseurIHM extends javax.swing.JDialog {
                 this.processeurService.remove(processeur);
                 this.model.update(this.processeurService.sort());
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erreur pendant la suppression du processeur", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

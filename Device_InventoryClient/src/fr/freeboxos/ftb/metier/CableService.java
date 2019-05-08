@@ -14,4 +14,5 @@ import lml.persistence.CrudService;
  */
 public interface CableService extends CrudService<Cable> {
 
+    public Cable[] sort() throws Exception;
 }
