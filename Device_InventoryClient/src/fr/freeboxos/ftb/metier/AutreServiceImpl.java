@@ -5,7 +5,11 @@
  */
 package fr.freeboxos.ftb.metier;
 
+import fr.freeboxos.ftb.metier.entitys.Administrateur;
 import fr.freeboxos.ftb.metier.entitys.Autre;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdAdministrateur;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdAutre;
+import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -59,6 +63,16 @@ public class AutreServiceImpl extends ClientRest<Autre> implements AutreService 
     public List<Autre> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public Autre[] sort() throws Exception {
+        Autre[] autres = this.getAll().toArray(new Autre[0]);
+        ComparatorByIdAutre cmp = new ComparatorByIdAutre();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(autres, cmp);
+
+        return autres;
     }
 
 }
