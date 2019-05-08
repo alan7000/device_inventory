@@ -96,6 +96,11 @@ public class MainIhm extends javax.swing.JFrame {
         });
 
         jButtonUtilisateur.setText("Utilisateur");
+        jButtonUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUtilisateurActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +140,7 @@ public class MainIhm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(207, 207, 207)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +186,16 @@ public class MainIhm extends javax.swing.JFrame {
         }
         processeurIHM.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUtilisateurActionPerformed
+        AdministrateurIHM administrateurIHM = null;
+        try {
+            administrateurIHM = new AdministrateurIHM(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        administrateurIHM.setVisible(true);
+    }//GEN-LAST:event_jButtonUtilisateurActionPerformed
 
     /**
      * @param args the command line arguments
