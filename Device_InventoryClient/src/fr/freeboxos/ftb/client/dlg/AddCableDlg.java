@@ -8,7 +8,6 @@ package fr.freeboxos.ftb.client.dlg;
 import fr.freeboxos.ftb.metier.entitys.Cable;
 import fr.freeboxos.ftb.metier.enums.cableType;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

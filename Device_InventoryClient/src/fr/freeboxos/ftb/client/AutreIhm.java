@@ -5,11 +5,11 @@
  */
 package fr.freeboxos.ftb.client;
 
-import fr.freeboxos.ftb.client.dlg.AddAdministrateurDlg;
-import fr.freeboxos.ftb.client.model.AdministrateurTableModel;
-import fr.freeboxos.ftb.metier.AdministrateurService;
+import fr.freeboxos.ftb.client.dlg.AddAutreDlg;
+import fr.freeboxos.ftb.client.model.AutreTableModel;
+import fr.freeboxos.ftb.metier.AutreService;
 import fr.freeboxos.ftb.metier.MetierFactory;
-import fr.freeboxos.ftb.metier.entitys.Administrateur;
+import fr.freeboxos.ftb.metier.entitys.Autre;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -20,25 +20,24 @@ import javax.swing.SwingUtilities;
  *
  * @author alan
  */
-public class AdministrateurIHM extends javax.swing.JDialog {
+public class AutreIhm extends javax.swing.JDialog {
 
-    private final AdministrateurService administrateurService;
-    private final AdministrateurTableModel model;
+    private final AutreService autreService;
+    private final AutreTableModel model;
 
     /**
-     * Creates new form AdministrateurIHM
+     * Creates new form AutreIhm
      *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
      */
-    public AdministrateurIHM(java.awt.Frame parent, boolean modal) throws Exception {
+    public AutreIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.jLabel1.setText("Liste des utilisateurs");
-        this.administrateurService = MetierFactory.getAdministrateurService();
-        this.model = new AdministrateurTableModel(this.administrateurService.sort());
+        this.autreService = MetierFactory.getAutreService();
+        this.model = new AutreTableModel(this.autreService.sort());
         this.jTable1.setModel(model);
     }
 
@@ -61,7 +60,7 @@ public class AdministrateurIHM extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Liste des autre objet");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,25 +110,27 @@ public class AdministrateurIHM extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(45, 45, 45)
-                                .addComponent(jButton3))
+                                .addComponent(jButton4)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton4)))))
-                .addContainerGap())
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,13 +139,14 @@ public class AdministrateurIHM extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
         pack();
@@ -170,15 +172,14 @@ public class AdministrateurIHM extends javax.swing.JDialog {
                 throw new Exception("Veuillez selectionner un utilisateur");
             }
 
-            Administrateur administrateur = this.model.getAdministrateurAt(this.jTable1.getSelectedRow());
+            Autre autre = this.model.getAutreAt(this.jTable1.getSelectedRow());
 
             try {
-                this.administrateurService.remove(administrateur);
-                this.model.update(this.administrateurService.sort());
+                this.autreService.remove(autre);
+                this.model.update(this.autreService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -191,51 +192,46 @@ public class AdministrateurIHM extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AddAdministrateurDlg addAdministrateurDlg;
-        addAdministrateurDlg = new AddAdministrateurDlg(frame, true);
-        addAdministrateurDlg.setVisible(true);
-        Administrateur administrateur = addAdministrateurDlg.getAdministrateur();
+        AddAutreDlg addAutreDlg;
+        addAutreDlg = new AddAutreDlg(frame, true);
+        addAutreDlg.setVisible(true);
+        Autre autre = addAutreDlg.getAutre();
 
-        if (administrateur != null) {
+        if (autre != null) {
             try {
-                this.administrateurService.add(administrateur);
-                this.model.update(this.administrateurService.sort());
+                this.autreService.add(autre);
+                this.model.update(this.autreService.sort());
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erreur pendant l'ajout de l'utilisateur", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Erreur pendant l'ajout de l'objet", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * Bouton modifier
-     *
-     * @param evt
-     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (this.jTable1.getSelectedRow() == -1) {
-                throw new Exception("Veuillez selectionner un utilisateur");
+                throw new Exception("Veuillez selectionner un objet");
             }
 
-            Administrateur administrateur = this.model.getAdministrateurAt(this.jTable1.getSelectedRow());
+            Autre autre = this.model.getAutreAt(this.jTable1.getSelectedRow());
 
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-            AddAdministrateurDlg addAdministrateurDlg = null;
+            AddAutreDlg addAutreDlg = null;
+            addAutreDlg = new AddAutreDlg(frame, true, autre);
 
-            addAdministrateurDlg = new AddAdministrateurDlg(frame, true, administrateur);
+            addAutreDlg.setVisible(true);
 
-            addAdministrateurDlg.setVisible(true);
+            autre = addAutreDlg.getAutre();
 
-            administrateur = addAdministrateurDlg.getAdministrateur();
-
-            if (administrateur != null) {
-                this.administrateurService.update(administrateur);
-                this.model.update(this.administrateurService.sort());
+            if (autre != null) {
+                this.autreService.update(autre);
+                this.model.update(this.autreService.sort());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -255,13 +251,13 @@ public class AdministrateurIHM extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministrateurIHM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutreIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministrateurIHM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutreIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministrateurIHM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutreIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrateurIHM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutreIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -269,11 +265,11 @@ public class AdministrateurIHM extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                AdministrateurIHM dialog = null;
+                AutreIhm dialog = null;
                 try {
-                    dialog = new AdministrateurIHM(new javax.swing.JFrame(), true);
+                    dialog = new AutreIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
-                    Logger.getLogger(AdministrateurIHM.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AutreIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

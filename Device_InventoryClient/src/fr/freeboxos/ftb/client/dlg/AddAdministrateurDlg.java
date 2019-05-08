@@ -6,7 +6,6 @@
 package fr.freeboxos.ftb.client.dlg;
 
 import fr.freeboxos.ftb.metier.entitys.Administrateur;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
