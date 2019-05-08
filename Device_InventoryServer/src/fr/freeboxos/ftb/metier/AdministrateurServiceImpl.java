@@ -27,7 +27,7 @@ public class AdministrateurServiceImpl implements AdministrateurService {
 
     @Override
     public void update(Administrateur t) throws Exception {
-        this.administrateurDataService.remove(t);
+        this.administrateurDataService.update(t);
     }
 
     @Override
