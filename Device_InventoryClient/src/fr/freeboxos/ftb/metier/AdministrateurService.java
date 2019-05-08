@@ -16,4 +16,6 @@ public interface AdministrateurService extends CrudService<Administrateur> {
 
     public Administrateur getByLogin(String login) throws Exception;
 
+    public Administrateur[] sort() throws Exception;
+
 }

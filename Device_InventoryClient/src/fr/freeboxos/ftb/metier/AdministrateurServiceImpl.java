@@ -6,7 +6,8 @@
 package fr.freeboxos.ftb.metier;
 
 import fr.freeboxos.ftb.metier.entitys.Administrateur;
-import java.util.ArrayList;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdAdministrateur;
+import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -62,6 +63,16 @@ public class AdministrateurServiceImpl extends ClientRest<Administrateur> implem
     public Administrateur getByLogin(String login) throws Exception {
         super.setPath("login/" + login);
         return super.getEntity();
+    }
+
+    @Override
+    public Administrateur[] sort() throws Exception {
+        Administrateur[] administrateurs = this.getAll().toArray(new Administrateur[0]);
+        ComparatorByIdAdministrateur cmp = new ComparatorByIdAdministrateur();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(administrateurs, cmp);
+
+        return administrateurs;
     }
 
 }
