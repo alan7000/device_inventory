@@ -5,7 +5,11 @@
  */
 package fr.freeboxos.ftb.metier;
 
+import fr.freeboxos.ftb.metier.entitys.Administrateur;
 import fr.freeboxos.ftb.metier.entitys.Cable;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdAdministrateur;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdCable;
+import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -59,6 +63,16 @@ public class CableServiceImpl extends ClientRest<Cable> implements CableService 
     public List<Cable> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public Cable[] sort() throws Exception {
+        Cable[] cables = this.getAll().toArray(new Cable[0]);
+        ComparatorByIdCable cmp = new ComparatorByIdCable();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(cables, cmp);
+
+        return cables;
     }
 
 }
