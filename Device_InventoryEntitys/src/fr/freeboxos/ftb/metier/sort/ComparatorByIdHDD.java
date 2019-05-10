@@ -18,5 +18,9 @@ public class ComparatorByIdHDD implements Comparator<HDD> {
     public int compare(HDD t, HDD t1) {
         return (int) (t.getId() - t1.getId());
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> master
 }

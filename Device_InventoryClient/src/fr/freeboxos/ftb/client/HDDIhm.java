@@ -10,6 +10,10 @@ import fr.freeboxos.ftb.client.model.HDDTableModel;
 import fr.freeboxos.ftb.metier.HDDService;
 import fr.freeboxos.ftb.metier.MetierFactory;
 import fr.freeboxos.ftb.metier.entitys.HDD;
+<<<<<<< HEAD
+=======
+import fr.freeboxos.ftb.metier.entitys.Memoire;
+>>>>>>> master
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -64,6 +68,7 @@ public class HDDIhm extends javax.swing.JDialog {
         jLabel1.setText("Liste des disque dur");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
+<<<<<<< HEAD
                 new Object[][]{
                     {null, null, null, null},
                     {null, null, null, null},
@@ -73,6 +78,17 @@ public class HDDIhm extends javax.swing.JDialog {
                 new String[]{
                     "Title 1", "Title 2", "Title 3", "Title 4"
                 }
+=======
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+>>>>>>> master
         ));
         jScrollPane1.setViewportView(jTable1);
 
@@ -107,6 +123,7 @@ public class HDDIhm extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
+<<<<<<< HEAD
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,6 +162,46 @@ public class HDDIhm extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4)
                                 .addContainerGap())
+=======
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addComponent(jButton3)))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap())
+>>>>>>> master
         );
 
         pack();
@@ -222,7 +279,11 @@ public class HDDIhm extends javax.swing.JDialog {
             AddHDDDlg addHDDDlg = null;
             addHDDDlg = new AddHDDDlg(frame, true, hdd);
             addHDDDlg.setVisible(true);
+<<<<<<< HEAD
             hdd = addHDDDlg.getHdd();
+=======
+            hdd = addHDDDlg.getHDD();
+>>>>>>> master
 
             if (hdd != null) {
                 try {
@@ -234,7 +295,10 @@ public class HDDIhm extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+<<<<<<< HEAD
             Logger.getLogger(HDDIhm.class.getName()).log(Level.SEVERE, null, e);
+=======
+>>>>>>> master
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

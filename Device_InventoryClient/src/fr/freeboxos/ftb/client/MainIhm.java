@@ -238,6 +238,10 @@ public class MainIhm extends javax.swing.JFrame {
             hDDIhm = new HDDIhm(this, true);
         } catch (Exception e) {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         }
         hDDIhm.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
