@@ -6,15 +6,13 @@
 package fr.freeboxos.ftb.metier;
 
 import fr.freeboxos.ftb.metier.entitys.HDD;
-<<<<<<< HEAD
+
 import fr.freeboxos.ftb.metier.entitys.SSD;
-import fr.freeboxos.ftb.metier.sort.ComparatorByIdHDD;
-import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.ArrayList;
-=======
+
 import fr.freeboxos.ftb.metier.sort.ComparatorByIdHDD;
 import fr.freeboxos.ftb.metier.sort.Sort;
->>>>>>> master
+
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -82,8 +80,5 @@ public class HDDServiceImpl extends ClientRest<HDD> implements HDDService {
 
         return hdds;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 }
