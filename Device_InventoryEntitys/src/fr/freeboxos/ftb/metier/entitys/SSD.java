@@ -19,19 +19,12 @@ public class SSD extends HDD {
     private long iops;
     private boolean trim;
 
-    public SSD(boolean nvme, boolean trim) {
-        this.nvme = false;
-        this.trim = false;
+    public SSD() {
+        super();
     }
 
-    public SSD(String type_memoire, boolean nvme, String controleur, String lecture, String ecriture, long iops, boolean trim) {
-        this.type_memoire = type_memoire;
-        this.nvme = nvme;
-        this.controleur = controleur;
-        this.lecture = lecture;
-        this.ecriture = ecriture;
-        this.iops = iops;
-        this.trim = trim;
+    public SSD(String marque, String modele, String interface_ordinateur, String format, String capacite, String vitesse_de_rotation, String cache, String prix) {
+        super(marque, modele, interface_ordinateur, format, capacite, vitesse_de_rotation, cache, prix);
     }
 
     public String getType_memoire() {
