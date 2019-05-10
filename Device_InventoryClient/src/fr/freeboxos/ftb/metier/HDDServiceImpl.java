@@ -5,7 +5,11 @@
  */
 package fr.freeboxos.ftb.metier;
 
+import fr.freeboxos.ftb.metier.entitys.Cable;
 import fr.freeboxos.ftb.metier.entitys.HDD;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdCable;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdHDD;
+import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -59,6 +63,16 @@ public class HDDServiceImpl extends ClientRest<HDD> implements HDDService {
     public List<HDD> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public HDD[] sort() throws Exception {
+        HDD[] hdds = this.getAll().toArray(new HDD[0]);
+        ComparatorByIdHDD cmp = new ComparatorByIdHDD();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(hdds, cmp);
+
+        return hdds;
     }
 
 }
