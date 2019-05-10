@@ -225,7 +225,15 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxMarque">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="7">
+            <StringItem index="0" value="Samsung"/>
+            <StringItem index="1" value="Western_Digital"/>
+            <StringItem index="2" value="Toshiba"/>
+            <StringItem index="3" value="Hitachi"/>
+            <StringItem index="4" value="HP"/>
+            <StringItem index="5" value="LDLC"/>
+            <StringItem index="6" value="Seagate"/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -377,7 +385,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldIOPS">
       <Properties>
-        <Property name="text" type="java.lang.String" value="?"/>
+        <Property name="text" type="java.lang.String" value="0"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
@@ -409,11 +417,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Annuler"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnnulerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxTypeMemoire">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="3">
+            <StringItem index="0" value="MLC"/>
+            <StringItem index="1" value="QLC"/>
+            <StringItem index="2" value="TLC"/>
+          </StringArray>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>

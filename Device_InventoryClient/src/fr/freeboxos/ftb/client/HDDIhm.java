@@ -234,6 +234,7 @@ public class HDDIhm extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(HDDIhm.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

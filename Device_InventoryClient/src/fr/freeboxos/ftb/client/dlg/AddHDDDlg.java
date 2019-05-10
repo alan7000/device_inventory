@@ -10,6 +10,7 @@ import fr.freeboxos.ftb.metier.entitys.SSD;
 import fr.freeboxos.ftb.metier.enums.hddMarque;
 import fr.freeboxos.ftb.metier.enums.ssdType;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,20 +39,24 @@ public class AddHDDDlg extends javax.swing.JDialog {
     public AddHDDDlg(java.awt.Frame parent, boolean modal, HDD hdd) {
         super(parent, modal);
         initComponents();
-
+        this.setLocationRelativeTo(null);
         /**
          * Mettre les valeurs pour les modification
          */
-        this.jComboBoxMarque.setSelectedItem(this.hdd.getMarque());
-        this.jTextFieldModele.setText(this.hdd.getModele());
-        this.jComboBoxInterface.setSelectedItem(this.hdd.getInterface_ordinateur());
-        this.jComboBoxFormat.setSelectedItem(this.hdd.getFormat());
-        this.jTextFieldCapacite.setText(this.hdd.getCapacite());
-        this.jComboBoxVitesse.setSelectedItem(this.hdd.getVitesse_de_rotation());
-        this.jTextFieldCache.setText(this.hdd.getCache());
+        this.id = hdd.getId();
+        this.jLabelTitre.setText("Modification d'un disque dur");
+        this.jComboBoxMarque.setSelectedItem(hdd.getMarque());
+        this.jTextFieldModele.setText(hdd.getModele());
+        this.jComboBoxInterface.setSelectedItem(hdd.getInterface_ordinateur());
+        this.jComboBoxFormat.setSelectedItem(hdd.getFormat());
+        this.jTextFieldCapacite.setText(hdd.getCapacite());
+        this.jComboBoxVitesse.setSelectedItem(hdd.getVitesse_de_rotation());
+        this.jTextFieldCache.setText(hdd.getCache());
 
         if (hdd instanceof SSD) {
             SSD ssd = (SSD) hdd;
+
+            this.jCheckBoxSSD.setSelected(true);
 
             /**
              * Rendre enable les element au moment d'une modification
@@ -129,6 +134,8 @@ public class AddHDDDlg extends javax.swing.JDialog {
 
         jLabel2.setText("Marque");
 
+        jComboBoxMarque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Samsung", "Western_Digital", "Toshiba", "Hitachi", "HP", "LDLC", "Seagate" }));
+
         jLabel3.setText("Modèle");
 
         jTextFieldModele.setText("?");
@@ -182,7 +189,7 @@ public class AddHDDDlg extends javax.swing.JDialog {
 
         jLabel13.setText("IOPS");
 
-        jTextFieldIOPS.setText("?");
+        jTextFieldIOPS.setText("0");
         jTextFieldIOPS.setEnabled(false);
 
         jCheckBoxTrim.setText("Trim");
@@ -200,7 +207,13 @@ public class AddHDDDlg extends javax.swing.JDialog {
         });
 
         jButtonAnnuler.setText("Annuler");
+        jButtonAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnnulerActionPerformed(evt);
+            }
+        });
 
+        jComboBoxTypeMemoire.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MLC", "QLC", "TLC" }));
         jComboBoxTypeMemoire.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -370,12 +383,109 @@ public class AddHDDDlg extends javax.swing.JDialog {
         this.jCheckBoxTrim.setEnabled(actualState);
     }//GEN-LAST:event_jCheckBoxSSDActionPerformed
 
+    /**
+     * Bouton ajouter "ok"
+     *
+     * @param evt
+     */
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         try {
-            String marque = (String) this.jComboBoxMarque.getSelectedItem();
+            String marque = this.jComboBoxMarque.getSelectedItem().toString();
+            String modele = this.jTextFieldModele.getText();
+            String interface_ordinateur = (String) this.jComboBoxInterface.getSelectedItem();
+            String format = this.jComboBoxFormat.getSelectedItem().toString();
+            String capacite = this.jTextFieldCapacite.getText();
+            String vitesse_de_rotation = this.jComboBoxVitesse.getSelectedItem().toString();
+            String cache = this.jTextFieldCache.getText();
+            String prix = this.jTextFieldPrix.getText();
+
+            if (marque.length() == 0) {
+                throw new Exception("veuillez entrer une marque");
+            }
+
+            if (modele.length() == 0) {
+                throw new Exception("veuillez entrer un modèle");
+            }
+            if (interface_ordinateur.length() == 0) {
+                throw new Exception("veuillez entrer une interface ordinateur");
+            }
+            if (format.length() == 0) {
+                throw new Exception("veuillez entrer un format");
+            }
+            if (capacite.length() == 0) {
+                throw new Exception("veuillez entrer une capacité");
+            }
+            if (vitesse_de_rotation.length() == 0) {
+                throw new Exception("veuillez entrer une vitesse de rotation");
+            }
+            if (cache.length() == 0) {
+                throw new Exception("veuillez entrer un cache");
+            }
+            if (prix.length() == 0) {
+                throw new Exception("veuillez entrer un prix");
+            }
+
+            if (this.jCheckBoxSSD.isSelected()) {
+                String type_memoire = this.jComboBoxTypeMemoire.getSelectedItem().toString();
+                boolean nvme;
+                if (this.jCheckBoxNVME.isSelected()) {
+                    nvme = true;
+                } else {
+                    nvme = false;
+                }
+                String controleur = this.jTextFieldControleur.getText();
+                String lecture = this.jTextFieldLecture.getText();
+                String ecriture = this.jTextFieldEcriture.getText();
+                String iopsString = this.jTextFieldIOPS.getText();
+                long iops = Long.parseLong(iopsString);
+                boolean trim;
+                if (this.jCheckBoxTrim.isSelected()) {
+                    trim = true;
+                } else {
+                    trim = false;
+                }
+
+                if (type_memoire.length() == 0) {
+                    throw new Exception("veuillez entrer un type de mémoire");
+                }
+                if (controleur.length() == 0) {
+                    throw new Exception("veuillez entrer un controleur");
+                }
+                if (lecture.length() == 0) {
+                    throw new Exception("veuillez entrer une vitesse de lecture");
+                }
+                if (ecriture.length() == 0) {
+                    throw new Exception("veuillez entrer une vitesse d'écriture");
+                }
+                if (iopsString.length() == 0) {
+                    throw new Exception("veuillez entrer une valeur de iops");
+                }
+
+                this.hdd = new SSD(marque, modele, interface_ordinateur, format, capacite, vitesse_de_rotation, cache, prix);
+
+                SSD ssd = (SSD) this.hdd;
+                ssd.setControleur(controleur);
+                ssd.setEcriture(ecriture);
+                ssd.setIops(iops);
+                ssd.setLecture(lecture);
+                ssd.setNvme(nvme);
+                ssd.setTrim(trim);
+                ssd.setType_memoire(type_memoire);
+            } else {
+                this.hdd = new HDD(marque, modele, interface_ordinateur, format, capacite, vitesse_de_rotation, cache, prix);
+            }
+
+            this.hdd.setId(this.id);
+            this.dispose();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonOKActionPerformed
+
+    private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
+        hdd = null;
+        dispose();
+    }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
     /**
      * @param args the command line arguments
