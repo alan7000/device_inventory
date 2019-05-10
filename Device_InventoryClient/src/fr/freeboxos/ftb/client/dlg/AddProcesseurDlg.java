@@ -29,7 +29,6 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.jLabelTitre.setText("Ajout d'un processeur");
-        this.jComboBox1.setModel(new DefaultComboBoxModel(cpuMarque.values()));
     }
 
     public AddProcesseurDlg(java.awt.Frame parent, boolean modal, Processeur processeur) {
@@ -51,7 +50,7 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
         this.jTextFieldL2.setText(processeur.getL2());
         this.jTextFieldL3.setText(processeur.getL3());
         this.jTextFieldPrix.setText(processeur.getPrix());
-        this.jComboBox1.setModel(new DefaultComboBoxModel(cpuMarque.values()));
+        this.jComboBox1.setSelectedItem(processeur.getMarque());
     }
 
     /**
@@ -124,6 +123,8 @@ public class AddProcesseurDlg extends javax.swing.JDialog {
         jLabel12.setText("Cache L2");
 
         jLabel13.setText("Cache L3");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel", "AMD" }));
 
         jTextFieldModele.setText("?");
 
