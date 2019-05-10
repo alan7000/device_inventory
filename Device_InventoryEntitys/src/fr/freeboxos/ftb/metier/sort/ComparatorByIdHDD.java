@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.freeboxos.ftb.metier;
+package fr.freeboxos.ftb.metier.sort;
 
 import fr.freeboxos.ftb.metier.entitys.HDD;
-import lml.persistence.CrudService;
+import java.util.Comparator;
 
 /**
  *
  * @author alan
  */
-public interface HDDService extends CrudService<HDD> {
+public class ComparatorByIdHDD implements Comparator<HDD> {
 
-    public HDD[] sort() throws Exception;
+    @Override
+    public int compare(HDD t, HDD t1) {
+        return (int) (t.getId() - t1.getId());
+    }
+    
 }

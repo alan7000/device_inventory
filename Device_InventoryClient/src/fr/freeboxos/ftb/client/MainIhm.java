@@ -71,6 +71,11 @@ public class MainIhm extends javax.swing.JFrame {
         jButton2.setText("Memoire");
 
         jButton3.setText("Disque dur");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cable");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +231,17 @@ public class MainIhm extends javax.swing.JFrame {
         }
         autreIhm.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        HDDIhm hDDIhm = null;
+        try {
+            hDDIhm = new HDDIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        hDDIhm.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

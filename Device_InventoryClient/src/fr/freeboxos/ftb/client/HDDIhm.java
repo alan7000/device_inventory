@@ -5,11 +5,12 @@
  */
 package fr.freeboxos.ftb.client;
 
-import fr.freeboxos.ftb.client.dlg.AddCableDlg;
-import fr.freeboxos.ftb.client.model.CableTableModel;
-import fr.freeboxos.ftb.metier.CableService;
+import fr.freeboxos.ftb.client.dlg.AddHDDDlg;
+import fr.freeboxos.ftb.client.model.HDDTableModel;
+import fr.freeboxos.ftb.metier.HDDService;
 import fr.freeboxos.ftb.metier.MetierFactory;
-import fr.freeboxos.ftb.metier.entitys.Cable;
+import fr.freeboxos.ftb.metier.entitys.HDD;
+import fr.freeboxos.ftb.metier.entitys.Memoire;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -20,25 +21,25 @@ import javax.swing.SwingUtilities;
  *
  * @author alan
  */
-public class CableIhm extends javax.swing.JDialog {
+public class HDDIhm extends javax.swing.JDialog {
 
-    private final CableService cableService;
-    private final CableTableModel model;
+    private final HDDService hDDService;
+    private final HDDTableModel model;
 
     /**
-     * Creates new form CableIhm
+     * Creates new form HDDIhm
      *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
      */
-    public CableIhm(java.awt.Frame parent, boolean modal) throws Exception {
+    public HDDIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(1080, 720);
-        this.cableService = MetierFactory.getCableService();
-        this.model = new CableTableModel(this.cableService.sort());
+        this.setSize(1920, 1080);
+        this.hDDService = MetierFactory.getHDDService();
+        this.model = new HDDTableModel(this.hDDService.sort());
         this.jTable1.setModel(model);
     }
 
@@ -61,7 +62,7 @@ public class CableIhm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Liste des cables");
+        jLabel1.setText("Liste des disque dur");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,21 +112,23 @@ public class CableIhm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                        .addGap(128, 128, 128)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
+                        .addComponent(jButton1)
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(51, 51, 51)
-                                .addComponent(jButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                                .addComponent(jButton4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addComponent(jButton3)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,14 +137,15 @@ public class CableIhm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
         pack();
@@ -157,21 +161,21 @@ public class CableIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
-     * Bouton permettant de supprimer un cable
+     * Bouton supprimer
      *
      * @param evt
      */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             if (this.jTable1.getSelectedRow() == -1) {
-                throw new Exception("Veuillez selectionner un cable");
+                throw new Exception("Veuillez selectionner un disque dur");
             }
 
-            Cable cable = this.model.getCableAt(this.jTable1.getSelectedRow());
+            HDD hdd = this.model.getHddAt(this.jTable1.getSelectedRow());
 
             try {
-                this.cableService.remove(cable);
-                this.model.update(this.cableService.sort());
+                this.hDDService.remove(hdd);
+                this.model.update(this.hDDService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
@@ -188,19 +192,18 @@ public class CableIhm extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AddCableDlg addCableDlg;
-        addCableDlg = new AddCableDlg(frame, true);
-        addCableDlg.setVisible(true);
+        AddHDDDlg addHDDDlg;
+        addHDDDlg = new AddHDDDlg(frame, true);
+        addHDDDlg.setVisible(true);
 
-        Cable cable = addCableDlg.getCable();
-        if (cable != null) {
+        HDD hdd = addHDDDlg.getHdd();
+        if (hdd != null) {
             try {
-                this.cableService.add(cable);
-                this.model.update(this.cableService.sort());
+                this.hDDService.add(hdd);
+                this.model.update(this.hDDService.sort());
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erreur pendant l'ajout du cable", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Erreur pendant l'ajout du disque dur", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -212,27 +215,22 @@ public class CableIhm extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (this.jTable1.getSelectedRow() == -1) {
-                throw new Exception("Veuillez selectionner un cable");
+                throw new Exception("Veuillez selectionner un disque dur");
             }
 
-            Cable cable = this.model.getCableAt(this.jTable1.getSelectedRow());
-
+            HDD hdd = this.model.getHddAt(this.jTable1.getSelectedRow());
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            AddHDDDlg addHDDDlg = null;
+            addHDDDlg = new AddHDDDlg(frame, true, hdd);
+            addHDDDlg.setVisible(true);
+            hdd = addHDDDlg.getHDD();
 
-            AddCableDlg addCableDlg = null;
-
-            addCableDlg = new AddCableDlg(frame, true, cable);
-
-            addCableDlg.setVisible(true);
-
-            cable = addCableDlg.getCable();
-
-            if (cable != null) {
+            if (hdd != null) {
                 try {
-                    this.cableService.update(cable);
-                    this.model.update(this.cableService.sort());
+                    this.hDDService.update(hdd);
+                    this.model.update(this.hDDService.sort());
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Erreur pendant le mise a jour du cable", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Erreur pendant le mise a jour du disque dur", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -257,13 +255,13 @@ public class CableIhm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CableIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HDDIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CableIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HDDIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CableIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HDDIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CableIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HDDIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -271,11 +269,11 @@ public class CableIhm extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CableIhm dialog = null;
+                HDDIhm dialog = null;
                 try {
-                    dialog = new CableIhm(new javax.swing.JFrame(), true);
+                    dialog = new HDDIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
-                    Logger.getLogger(CableIhm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(HDDIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
