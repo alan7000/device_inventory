@@ -28,13 +28,13 @@ public class HDDDataServiceJDBCImpl extends AbstracCrudServiceJDBC<HDD> implemen
                     + "  `capacite` varchar(255) NOT NULL,\n"
                     + "  `vitesse_de_rotation` varchar(255) NOT NULL,\n"
                     + "  `cache` varchar(255) NOT NULL,\n"
-                    + "  `type_memoire` varchar(255) NOT NULL,\n"
-                    + "  `nvme` bool NOT NULL,\n"
-                    + "  `controleur` varchar(255) NOT NULL,\n"
-                    + "  `lecture` varchar(255) NOT NULL,\n"
-                    + "  `ecriture` varchar(255) NOT NULL,\n"
-                    + "  `iops` int(11) NOT NULL,\n"
-                    + "  `trim` bool NOT NULL,\n"
+                    + "  `type_memoire` varchar(255),\n"
+                    + "  `nvme` boolean,\n"
+                    + "  `controleur` varchar(255),\n"
+                    + "  `lecture` varchar(255),\n"
+                    + "  `ecriture` varchar(255),\n"
+                    + "  `iops` int(11),\n"
+                    + "  `trim` boolean,\n"
                     + "  `prix` varchar(255) NOT NULL,\n"
                     + "  `classe` varchar(255) NOT NULL,\n"
                     + "  PRIMARY KEY (`id`)\n"
@@ -60,21 +60,34 @@ public class HDDDataServiceJDBCImpl extends AbstracCrudServiceJDBC<HDD> implemen
         String vitesse_de_rotation = rs.getString("vitesse_de_rotation");
         String cache = rs.getString("cache");
         String type_memoire = rs.getString("type_memoire");
-        String strNvme = rs.getString("nvme");
-        boolean nvme = strNvme.equals("true");
+
+//        String strNvme = rs.getString("nvme");
+//        boolean nvme = strNvme.equals("true");
+        boolean nvme = (rs.getInt("nvme") == 1);
+
         String controleur = rs.getString("controleur");
         String lecture = rs.getString("lecture");
         String ecriture = rs.getString("ecriture");
         long iops = rs.getLong("iops");
-        String strTrim = rs.getString("trim");
-        boolean trim = strTrim.equals("true");
+
+//        String strTrim = rs.getString("trim");
+//        boolean trim = strTrim.equals("true");
+        boolean trim = (rs.getInt("trim") == 1);
         String prix = rs.getString("prix");
         String classe = rs.getString("classe");
 
         if (classe.equals(HDD.class.getSimpleName())) {
             hdd = new HDD(marque, modele, interface_ordinateur, format, capacite, vitesse_de_rotation, cache, prix);
         } else {
-            SSD ssd = new SSD(type_memoire, nvme, controleur, lecture, ecriture, iops, trim);
+            SSD ssd = new SSD(marque, modele, interface_ordinateur, format, capacite, vitesse_de_rotation, cache, prix);
+            ssd.setControleur(controleur);
+            ssd.setEcriture(ecriture);
+            ssd.setIops(iops);
+            ssd.setLecture(lecture);
+            ssd.setNvme(nvme);
+            ssd.setTrim(trim);
+            ssd.setType_memoire(type_memoire);
+
             hdd = ssd;
         }
 
