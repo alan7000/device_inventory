@@ -6,14 +6,11 @@
 package fr.freeboxos.ftb.client.dlg;
 
 import fr.freeboxos.ftb.metier.entitys.HDD;
-<<<<<<< HEAD
 import fr.freeboxos.ftb.metier.entitys.SSD;
 import fr.freeboxos.ftb.metier.enums.hddMarque;
 import fr.freeboxos.ftb.metier.enums.ssdType;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-=======
->>>>>>> master
 
 /**
  *
@@ -34,7 +31,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-<<<<<<< HEAD
         this.jLabelTitre.setText("Ajout d'un disque dur");
         this.jComboBoxMarque.setModel(new DefaultComboBoxModel(hddMarque.values()));
         this.jComboBoxTypeMemoire.setModel(new DefaultComboBoxModel(ssdType.values()));
@@ -88,9 +84,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
                 this.jCheckBoxTrim.setSelected(true);
             }
         }
-=======
-
->>>>>>> master
     }
 
     /**
@@ -102,7 +95,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
         jLabelTitre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxMarque = new javax.swing.JComboBox<>();
@@ -224,20 +216,12 @@ public class AddHDDDlg extends javax.swing.JDialog {
         jComboBoxTypeMemoire.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MLC", "QLC", "TLC" }));
         jComboBoxTypeMemoire.setEnabled(false);
 
-=======
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
->>>>>>> master
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabelTitre))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,6 +294,10 @@ public class AddHDDDlg extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAnnuler)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabelTitre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,19 +366,11 @@ public class AddHDDDlg extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonOK)
                     .addComponent(jButtonAnnuler)))
-=======
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
->>>>>>> master
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
     private void jCheckBoxSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSSDActionPerformed
         boolean actualState = this.jComboBoxTypeMemoire.isEnabled();
         actualState = !actualState;
@@ -508,8 +488,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
-=======
->>>>>>> master
     /**
      * @param args the command line arguments
      */
@@ -539,10 +517,9 @@ public class AddHDDDlg extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-<<<<<<< HEAD
+
             @Override
-=======
->>>>>>> master
+
             public void run() {
                 AddHDDDlg dialog = new AddHDDDlg(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -556,7 +533,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
         });
     }
 
-<<<<<<< HEAD
     public HDD getHdd() {
         return hdd;
     }
@@ -594,12 +570,6 @@ public class AddHDDDlg extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldLecture;
     private javax.swing.JTextField jTextFieldModele;
     private javax.swing.JTextField jTextFieldPrix;
-=======
-    public HDD getHDD() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
->>>>>>> master
     // End of variables declaration//GEN-END:variables
+
 }
