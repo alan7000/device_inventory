@@ -43,25 +43,25 @@ public class MemoireTableModel extends AbstractTableModel {
         Memoire memoire = this.memoires[rowIndex];
         switch (columnIndex) {
             case 0:
-                memoire.getMarque();
+                return memoire.getMarque();
             case 1:
-                memoire.getModele();
+                return memoire.getModele();
             case 2:
-                memoire.getType();
+                return memoire.getType();
             case 3:
-                memoire.getFormat();
+                return memoire.getFormat();
             case 4:
-                memoire.getCapacite();
+                return memoire.getCapacite();
             case 5:
-                memoire.getFrequence_memoire();
+                return memoire.getFrequence_memoire();
             case 6:
-                memoire.getECC();
+                return memoire.getECC();
             case 7:
-                memoire.getRadiateur();
+                return memoire.getRadiateur();
             case 8:
-                memoire.getTension();
+                return memoire.getTension();
             case 9:
-                memoire.getPrix();
+                return memoire.getPrix();
             default:
                 return null;
         }
@@ -109,7 +109,7 @@ public class MemoireTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
+    public Class getColumnClass(int columnIndex) {
         switch (columnIndex) {
             default:
                 return String.class;

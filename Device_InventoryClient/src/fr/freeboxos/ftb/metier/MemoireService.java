@@ -14,4 +14,5 @@ import lml.persistence.CrudService;
  */
 public interface MemoireService extends CrudService<Memoire> {
 
+    public Memoire[] sort() throws Exception;
 }

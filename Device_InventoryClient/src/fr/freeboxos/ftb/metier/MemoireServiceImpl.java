@@ -5,7 +5,11 @@
  */
 package fr.freeboxos.ftb.metier;
 
+import fr.freeboxos.ftb.metier.entitys.HDD;
 import fr.freeboxos.ftb.metier.entitys.Memoire;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdHDD;
+import fr.freeboxos.ftb.metier.sort.ComparatorByIdMemoire;
+import fr.freeboxos.ftb.metier.sort.Sort;
 import java.util.List;
 import lml.rest.client.ClientRest;
 
@@ -61,4 +65,13 @@ public class MemoireServiceImpl extends ClientRest<Memoire> implements MemoireSe
         return super.getEntitys();
     }
 
+    @Override
+    public Memoire[] sort() throws Exception {
+        Memoire[] memoires = this.getAll().toArray(new Memoire[0]);
+        ComparatorByIdMemoire cmp = new ComparatorByIdMemoire();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(memoires, cmp);
+
+        return memoires;
+    }
 }
