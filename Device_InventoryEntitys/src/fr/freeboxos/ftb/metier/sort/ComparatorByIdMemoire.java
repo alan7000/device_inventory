@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.freeboxos.ftb.metier;
+package fr.freeboxos.ftb.metier.sort;
 
 import fr.freeboxos.ftb.metier.entitys.Memoire;
-import lml.persistence.CrudService;
+import java.util.Comparator;
 
 /**
  *
  * @author alan
  */
-public interface MemoireService extends CrudService<Memoire> {
+public class ComparatorByIdMemoire implements Comparator<Memoire> {
 
-    public Memoire[] sort() throws Exception;
+    @Override
+    public int compare(Memoire o1, Memoire o2) {
+        return (int) (o1.getId() - o2.getId());
+    }
+
 }
