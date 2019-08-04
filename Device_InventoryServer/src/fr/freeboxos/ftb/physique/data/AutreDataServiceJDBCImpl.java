@@ -20,6 +20,7 @@ public class AutreDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Autre> impl
             String query = "CREATE TABLE IF NOT EXISTS `" + super.getEntityName() + "` (\n"
                     + " `id` int(11) NOT NULL AUTO_INCREMENT,\n"
                     + " `element` TEXT,\n"
+                    + " `nombre` int(11),"
                     + " PRIMARY KEY (`id`)\n"
                     + ") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
             super.executeQuery(query);
@@ -36,18 +37,21 @@ public class AutreDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Autre> impl
 
         long id = rs.getLong("id");
         String element = rs.getString("element");
+        int nombre = rs.getInt("nombre");
 
         autre = new Autre(element);
         autre.setId(id);
+        autre.setNombre(nombre);
 
         return autre;
     }
 
     @Override
     public Autre add(Autre t) throws Exception {
-        String query = "INSERT INTO " + super.getEntityName() + " (id, element) VALUES ('"
+        String query = "INSERT INTO " + super.getEntityName() + " (id, element, nombre) VALUES ('"
                 + t.getId() + "','"
-                + t.getElement() + "')";
+                + t.getElement() + "','"
+                + t.getNombre() + "')";
 
         t.setId(super.executeAdd(query));
 
@@ -64,7 +68,8 @@ public class AutreDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Autre> impl
     public void update(Autre t) throws Exception {
         String query = "UPDATE " + super.getEntityName() + " SET id = '"
                 + t.getId() + "', element = '"
-                + t.getElement() + "' WHERE id = '" + t.getId() + "'";
+                + t.getElement() + "', nombre = '"
+                + t.getNombre() + "' WHERE id = '" + t.getId() + "'";
 
         super.executeQuery(query);
     }
