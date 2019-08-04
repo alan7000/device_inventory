@@ -28,6 +28,14 @@ public class AddAutreDlg extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.jLabelTitre.setText("Ajout d'un objet");
+
+        /*
+        Chargement du jcombobox avec 50 nombre
+         */
+        for (int i = 1; i < 50; i++) {
+            String str1 = Integer.toString(i);
+            this.jComboBox1.addItem(str1);
+        }
     }
 
     public AddAutreDlg(java.awt.Frame parent, boolean modal, Autre autre) {
@@ -36,6 +44,16 @@ public class AddAutreDlg extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.jLabelTitre.setText("Modification d'un objet");
         this.jTextField1.setText(autre.getElement());
+
+        /*
+        Chargement du jcombobox avec 50 nombre
+         */
+        for (int i = 1; i < 50; i++) {
+            String str1 = Integer.toString(i);
+            this.jComboBox1.addItem(str1);
+        }
+
+        this.jComboBox1.setSelectedIndex(autre.getNombre());
         this.id = autre.getId();
     }
 
@@ -53,6 +71,8 @@ public class AddAutreDlg extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,6 +96,10 @@ public class AddAutreDlg extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("Nombre");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +119,12 @@ public class AddAutreDlg extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,7 +136,11 @@ public class AddAutreDlg extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -130,14 +163,23 @@ public class AddAutreDlg extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String element = this.jTextField1.getText();
+            String nombre = this.jComboBox1.getSelectedItem().toString();
 
             if (element.length() == 0) {
                 throw new Exception("Veuillez mettre un nom d'objet");
             }
 
+            if (nombre.length() == 0) {
+                throw new Exception("Veuillez selectionner un nombre");
+            }
+
+            int Nombre = Integer.parseInt(nombre);
+
             autre = new Autre(element);
+            this.autre.setNombre(Nombre);
             this.autre.setId(id);
             dispose();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
@@ -193,7 +235,9 @@ public class AddAutreDlg extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelTitre;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
