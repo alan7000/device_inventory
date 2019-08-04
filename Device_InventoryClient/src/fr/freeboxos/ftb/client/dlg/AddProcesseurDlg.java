@@ -6,8 +6,6 @@
 package fr.freeboxos.ftb.client.dlg;
 
 import fr.freeboxos.ftb.metier.entitys.Processeur;
-import fr.freeboxos.ftb.metier.enums.cpuMarque;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**

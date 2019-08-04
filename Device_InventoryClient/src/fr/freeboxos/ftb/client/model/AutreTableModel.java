@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class AutreTableModel extends AbstractTableModel {
 
-    private final String[] header = {"Type"};
+    private final String[] header = {"Type", "Nombre"};
     private Autre[] autres;
 
     public AutreTableModel(Autre[] autres) {
@@ -44,6 +44,8 @@ public class AutreTableModel extends AbstractTableModel {
         switch (columnIndex) {
             case 0:
                 return autre.getElement();
+            case 1:
+                return autre.getNombre();
             default:
                 return null;
         }
@@ -56,6 +58,8 @@ public class AutreTableModel extends AbstractTableModel {
             switch (columnIndex) {
                 case 0:
                     autre.setElement((String) aValue);
+                case 1:
+                    autre.setNombre((int) aValue);
             }
             MetierFactory.getAutreService().update(autre);
             this.fireTableDataChanged();

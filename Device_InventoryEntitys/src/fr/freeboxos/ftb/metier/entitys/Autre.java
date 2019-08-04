@@ -13,6 +13,15 @@ public class Autre {
 
     private long id;
     private String element;
+    private int nombre;
+
+    public int getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
+    }
 
     public Autre() {
     }
