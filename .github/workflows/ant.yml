@@ -13,5 +13,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Ant
+    - name: Build client
       run: ant -noinput -buildfile ./Device_InventoryClient/build.xml
+    - name: Build entity
+      run: ant -noinput -buildfile ./Device_InventoryEntitys/build.xml
+    - name: Build server
+      run: ant -noinput -buildfile ./Device_InventoryServer/build.xml
